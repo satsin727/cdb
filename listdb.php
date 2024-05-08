@@ -76,7 +76,11 @@ $sid = $row['id'];
 								$ins3= $conn->prepare($q2);
 								$ins3->execute(); 
 								$dta2 = $ins3->fetch();
+								isset($dta2['html'])
+								{
 								$mcontents = base64_decode($dta2['html']);
+								}
+								
 								
 	?>
     <tr>
