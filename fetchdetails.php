@@ -115,12 +115,12 @@ if($emails) {
 				$conn = null;
 				$conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
 				$update = 0;
-				$checkifemailexist = "SELECT * FROM `consultantdetails` WHERE `email` = \"$email\";";
+				$checkifemailexist = "SELECT * FROM `consultantdetails` WHERE `email` = '$email';";
 				$cq = $conn->prepare($checkifemailexist);
 				$cq->execute();
 				$cdta = $cq->fetch();
 				$cid = $cdta['id'];
-				if($cdta['id'] != "" || $cdta['id'] != null)
+				if(isset($cdta['id']))
 				{
 					$inquery = "UPDATE `consultantdetails` SET `skill` = '$subject', `fname` = '$fname', `lname` = '$lname', `city` = '$city', `state` = '$state', `zipcode` = '$zip', `email` = '$email', `phone` = '$number', `alt_phone` = '$alt_phone' WHERE `consultantdetails`.`id` = $cid;";
 					$update = 1;
@@ -169,9 +169,20 @@ window.location.href='admin.php';
 </script>"; }*/
 
 //$files = array_diff(scandir($path), array('.', '..'));
-echo $i." Databases Added";
-
 ?>
+	<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active">CDB Dashboard</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header"><?php echo $i." Databases Added"; ?></h1>
+			</div>
+		</div><!--/.row-->
+
 </div>
 <?php
 } //for admin
