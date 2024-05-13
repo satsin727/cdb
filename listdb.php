@@ -29,7 +29,7 @@ $uid = $dta['uid'];
 if($dta['level'] == 1 || $dta['level'] == 2 )
 {
 	
-$query = "SELECT * FROM `consultantdetails` order by id desc limit 0,1000";
+$query = "SELECT * FROM `consultantdetails` order by id desc";
 //$query = "SELECT * FROM `consultantdetails` WHERE `updated` > CURRENT_DATE";
 }
 elseif ($dta['level'] == 3)
@@ -76,7 +76,11 @@ $sid = $row['id'];
 								$ins3= $conn->prepare($q2);
 								$ins3->execute(); 
 								$dta2 = $ins3->fetch();
+								if(isset($dta2['html']))
+								{
 								$mcontents = base64_decode($dta2['html']);
+								}
+								
 								
 	?>
     <tr>
